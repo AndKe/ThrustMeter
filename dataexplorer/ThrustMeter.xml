@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DeviceProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="DeviceProperties_V25.xsd">
+    <Device>
+        <name implementation="gde.device.wb.CSV2SerialAdapter">ThrustMeter</name>
+        <manufacturer>André Kjellstrup</manufacturer>
+        <manufacturerURL>http://madhacker.org</manufacturerURL>
+        <group>charger</group>
+        <image>CSV2SerialAdapter.png</image>
+        <usage>true</usage>
+    </Device>
+    <SerialPort>
+        <port>/dev/ttyACM0</port>
+        <baudeRate>115200</baudeRate>
+        <dataBits>DATABITS_8</dataBits>
+        <stopBits>STOPBITS_1</stopBits>
+        <parity>PARITY_NONE</parity>
+        <flowControlMode>FLOWCONTROL_NONE</flowControlMode>
+        <isRTS>true</isRTS>
+        <isDTR>true</isDTR>
+        <TimeOut>
+            <ReadTimeOut>2000</ReadTimeOut>
+            <ReadStableIndex>3</ReadStableIndex>
+            <WriteCharDelayTime>0</WriteCharDelayTime>
+            <WriteDelayTime>0</WriteDelayTime>
+        </TimeOut>
+    </SerialPort>
+    <TimeBase>
+        <name>Time</name>
+        <symbol>t</symbol>
+        <unit>msec</unit>
+        <timeStep>-2000.0</timeStep>
+        <avarage_timeStep>-2000.0</avarage_timeStep>
+    </TimeBase>
+    <DataBlock>
+        <format inputType="SERIAL_IO" formatType="BYTE" size="-50"/>
+        <format inputType="FILE_IO" formatType="VALUE" size="-8"/>
+        <timeUnit>msec</timeUnit>
+        <separator>semicolon</separator>
+        <leader>$</leader>
+        <trailer>0D0A</trailer>
+        <preferredDataLocation>/home/brueg/Documents/DataExplorer/ThrustMeter</preferredDataLocation>
+        <preferredFileExtention>*.cap</preferredFileExtention>
+    </DataBlock>
+    <State>
+        <property name="STOP" value="0" type="Integer" description="Stopped"/>
+        <property name="RUN" value="1" type="Integer" description="Running"/>
+    </State>
+    <Channels>
+        <Channel name="Output" type="TYPE_OUTLET">
+            <Measurement>
+                <name>Voltage</name>
+                <symbol>U</symbol>
+                <unit>V</unit>
+                <active>true</active>
+                <statistics min="true" max="true" avg="false" sigma="false"/>
+                <property name="factor" value="0.01" type="Double" description="Faktor * input value"/>
+            </Measurement>
+            <Measurement>
+                <name>Current</name>
+                <symbol>I</symbol>
+                <unit>A</unit>
+                <active>true</active>
+                <statistics min="true" max="true" avg="false" sigma="false"/>
+                <property name="factor" value="0.01" type="Double" description="Faktor * input value"/>
+            </Measurement>
+            <Measurement>
+                <name>Power</name>
+                <symbol>W</symbol>
+                <unit>W</unit>
+                <active>true</active>
+                <statistics min="true" max="true" avg="false" sigma="false"/>
+                <property name="factor" value="0.1" type="Double" description="Faktor * input value"/>
+            </Measurement>
+            <Measurement>
+                <name>throttle</name>
+                <symbol>throttle</symbol>
+                <unit>percent</unit>
+                <active>true</active>
+                <statistics min="true" max="true" avg="false" sigma="false"/>
+                <property name="factor" value="1" type="Double" description="Faktor * input value"/>
+            </Measurement>
+            <Measurement>
+                <name>Thrust</name>
+                <symbol>g</symbol>
+                <unit>g</unit>
+                <active>true</active>
+                <statistics min="true" max="true" avg="false" sigma="false"/>
+                <property name="factor" value="0.1" type="Double" description="Faktor * input value"/>
+            </Measurement>
+            <Measurement>
+                <name>ThrustWatt</name>
+                <symbol>gw</symbol>
+                <unit>gw</unit>
+                <active>true</active>
+                <statistics min="true" max="true" avg="false" sigma="false"/>
+                <property name="factor" value="0.1" type="Double" description="Faktor * input value"/>
+            </Measurement>
+        </Channel>
+    </Channels>
+    <Desktop>
+        <property name="table_tab" value="true"/>
+        <property name="digital_tab" value="true"/>
+        <property name="analog_tab" value="true"/>
+        <property name="voltage_per_cell_tab" value="false"/>
+        <property name="utility_garphics_tab" value="false" description="UTILITY_GRAPHICS_TAB"/>
+        <property name="utility_device_tab" value="false" description="UTILITY_DEVICE_TAB"/>
+    </Desktop>
+</DeviceProperties>
